@@ -1,0 +1,21 @@
+'use strict';
+module.exports = (sequelize, DataTypes) => {
+  const Movie = sequelize.define('Movie', {
+    image: DataTypes.STRING,
+    trailer: DataTypes.STRING,
+    nameVi: DataTypes.STRING,
+    nameEn: DataTypes.STRING,
+    overView: DataTypes.TEXT,
+    premiereDate: DataTypes.DATE,
+    duration: DataTypes.INTEGER,
+    ageLimit: DataTypes.INTEGER,
+    director: DataTypes.STRING,
+    producer: DataTypes.STRING,
+    universeId: DataTypes.INTEGER,
+    isVietnameseMovie: DataTypes.BOOLEAN
+  }, {});
+  Movie.associate = function(models) {
+    // associations can be defined here
+  };
+  return Movie;
+};
