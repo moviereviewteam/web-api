@@ -5,7 +5,8 @@ module.exports = (sequelize, DataTypes) => {
     genreId: DataTypes.INTEGER
   }, {});
   MovieGenre.associate = function(models) {
-    // associations can be defined here
+    MovieGenre.belongsTo(models.Movie, { foreignKey: 'movieId' });
+    MovieGenre.belongsTo(models.Genre, { foreignKey: 'genreId' });
   };
   return MovieGenre;
 };

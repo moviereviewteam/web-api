@@ -58,3 +58,39 @@ export async function getAllMoviesByActorId(body) {
         throw error;
     }
 }
+
+export async function getAllMoviesByGenreId(body) {
+    try {
+        const { genreId } = body.query;
+        if (!genreId) {
+            throw new ValidateError({
+                message: "Param \'genreId\' is required."
+            });
+        }
+        else {
+            const moviesList = await models.MovieGenre.findAll({
+                include: [
+                    {
+                        model: models.Movie,
+                    }
+                ],
+                where: {
+                    genreId
+                }
+            });
+            const result = [];
+            for (const movie of moviesList) {
+                result.push({
+                    id: movie.movieId,
+                    image: movie.Movie.image,
+                    name: movie.Movie.nameVi,
+                    premiereDate: movie.Movie.premiereDate
+                });
+            }
+            return result;
+        }
+    }
+    catch (error) {
+        throw error;
+    }
+}
