@@ -1,5 +1,5 @@
 import express from 'express';
-import { getMovieById } from '../services/movieService';
+import { getMovieById, getAllMoviesByActorId } from '../services/movieService';
 
 function modelHandler(modelFunc) {
     return async (req, res, next) => {
@@ -16,6 +16,7 @@ function modelHandler(modelFunc) {
   
 export default function (name) {
 return {
-    getMovieById: express.Router().use(modelHandler(getMovieById))
+    getMovieById: express.Router().use(modelHandler(getMovieById)),
+    getAllMoviesByActorId: express.Router().use(modelHandler(getAllMoviesByActorId)),
 }[name];
 }

@@ -8,7 +8,7 @@ module.exports = (sequelize, DataTypes) => {
     description: DataTypes.TEXT
   }, {});
   Actor.associate = function(models) {
-    // associations can be defined here
+    Actor.hasMany(models.MovieActor, { foreignKey: 'actorId' });
   };
   return Actor;
 };

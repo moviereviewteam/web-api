@@ -15,7 +15,7 @@ module.exports = (sequelize, DataTypes) => {
     isVietnameseMovie: DataTypes.BOOLEAN
   }, {});
   Movie.associate = function(models) {
-    // associations can be defined here
+    Movie.hasMany(models.MovieActor, { foreignKey: 'movieId' });
   };
   return Movie;
 };

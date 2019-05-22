@@ -5,7 +5,8 @@ module.exports = (sequelize, DataTypes) => {
     actorId: DataTypes.INTEGER
   }, {});
   MovieActor.associate = function(models) {
-    // associations can be defined here
+    MovieActor.belongsTo(models.Movie, { foreignKey: 'movieId' });
+    MovieActor.belongsTo(models.Actor, { foreignKey: 'actorId' });
   };
   return MovieActor;
 };
