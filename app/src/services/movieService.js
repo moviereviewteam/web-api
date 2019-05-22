@@ -94,3 +94,25 @@ export async function getAllMoviesByGenreId(body) {
         throw error;
     }
 }
+
+export async function getAllMoviesByUniverseId(body) {
+    try {
+        const { universeId } = body.query;
+        if (!universeId) {
+            throw new ValidateError({
+                message: "Param \'universeId\' is required."
+            });
+        }
+        else {
+            const movieList = await models.Movie.findAll({
+                where: {
+                    universeId
+                }
+            });
+            return movieList;
+        }
+    }
+    catch (error) {
+        throw error;
+    }
+}
