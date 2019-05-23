@@ -9,7 +9,7 @@ module.exports = (sequelize, DataTypes) => {
     roleId: DataTypes.INTEGER
   }, {});
   User.associate = function(models) {
-    // associations can be defined here
+    User.hasMany(models.ReviewArticle, { foreignKey: 'userId' });
   };
   return User;
 };

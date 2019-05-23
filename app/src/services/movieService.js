@@ -2,6 +2,7 @@ import models from '../../db/models';
 import { ValidateError } from '../errors';
 import { getAllActorsByMovieId } from './actorService';
 import { getAllGenresByMovieId } from './genreService';
+import { getAllArticlesByMovieId } from './articleService';
 
 export async function getMovieById(body) {
     try {
@@ -32,6 +33,11 @@ export async function getMovieById(body) {
                     movieId: id
                 }
             });
+            const articles = await getAllArticlesByMovieId({
+                query: {
+                    movieId: id
+                }
+            });
             const result = {
                 id: movie.id,
                 image: movie.image,
@@ -47,7 +53,8 @@ export async function getMovieById(body) {
                 universe: movie.Universe.name,
                 isVietnameseMovie: movie.isVietnameseMovie,
                 actors,
-                genres
+                genres,
+                articles
             }
             return result;
         }
