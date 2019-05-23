@@ -1,5 +1,6 @@
 import models from '../../db/models';
 import { ValidateError } from '../errors';
+import { getAllActorsByMovieId } from './actorService';
 
 export async function getMovieById(body) {
     try {
@@ -15,7 +16,28 @@ export async function getMovieById(body) {
                     id
                 }
             });
-            return movie;
+            const actors = await getAllActorsByMovieId({
+                query: {
+                    movieId: id
+                }
+            });
+            const result = {
+                id: movie.id,
+                image: movie.image,
+                trailer: movie.trailer,
+                nameVi: movie.nameVi,
+                nameEn: movie.nameEn,
+                overView: movie.overView,
+                premiereDate: movie.premiereDate,
+                duration: movie.duration,
+                ageLimit: movie.ageLimit,
+                director: movie.director,
+                producer: movie.producer,
+                universeId: movie.universeId,
+                isVietnameseMovie: movie.isVietnameseMovie,
+                actors
+            }
+            return result;
         }
     }
     catch (error) {
