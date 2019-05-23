@@ -1,6 +1,7 @@
 import models from '../../db/models';
 import { ValidateError } from '../errors';
 import { getAllActorsByMovieId } from './actorService';
+import { getAllGenresByMovieId } from './genreService';
 
 export async function getMovieById(body) {
     try {
@@ -12,11 +13,21 @@ export async function getMovieById(body) {
         }
         else {
             const movie = await models.Movie.findOne({
+                include: [
+                    {
+                        model: models.Universe,
+                    }
+                ],
                 where: {
                     id
                 }
             });
             const actors = await getAllActorsByMovieId({
+                query: {
+                    movieId: id
+                }
+            });
+            const genres = await getAllGenresByMovieId({
                 query: {
                     movieId: id
                 }
@@ -33,9 +44,10 @@ export async function getMovieById(body) {
                 ageLimit: movie.ageLimit,
                 director: movie.director,
                 producer: movie.producer,
-                universeId: movie.universeId,
+                universe: movie.Universe.name,
                 isVietnameseMovie: movie.isVietnameseMovie,
-                actors
+                actors,
+                genres
             }
             return result;
         }

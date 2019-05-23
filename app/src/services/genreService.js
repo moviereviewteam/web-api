@@ -1,8 +1,8 @@
 import models from '../../db/models';
 import { ValidateError } from '../errors';
-import { getAllMoviesByActorId } from './movieService';
+import { getAllMoviesByGenreId } from './movieService';
 
-export async function getActorById(body) {
+export async function getGenreById(body) {
     try {
         const { id } = body.query;
         if (!id) {
@@ -11,23 +11,19 @@ export async function getActorById(body) {
             });
         }
         else {
-            const actor = await models.Actor.findOne({
+            const genre = await models.Genre.findOne({
                 where: {
                     id
                 }
             });
-            const movieList = await getAllMoviesByActorId({
+            const movieList = await getAllMoviesByGenreId({
                 query: {
-                    actorId: id
+                    genreId: id
                 }
             });
             const result = {
-                id: actor.id,
-                image: actor.image,
-                name: actor.name,
-                dateOfBirth: actor.dateOfBirth,
-                placeOfBirth: actor.placeOfBirth,
-                description: actor.description,
+                id: genre.id,
+                name: genre.name,
                 movies: movieList
             };
             return result;
@@ -38,7 +34,7 @@ export async function getActorById(body) {
     }
 }
 
-export async function getAllActorsByMovieId(body) {
+export async function getAllGenresByMovieId(body) {
     try {
         const { movieId } = body.query;
         if (!movieId) {
@@ -47,10 +43,10 @@ export async function getAllActorsByMovieId(body) {
             });
         }
         else {
-            const actors = await models.MovieActor.findAll({
+            const genres = await models.MovieGenre.findAll({
                 include: [
                     {
-                        model: models.Actor
+                        model: models.Genre
                     }
                 ],
                 where: {
@@ -58,11 +54,10 @@ export async function getAllActorsByMovieId(body) {
                 }
             });
             const result = [];
-            for (const actor of actors) {
+            for (const genre of genres) {
                 result.push({
-                    id: actor.actorId,
-                    image: actor.Actor.image,
-                    name: actor.Actor.name,
+                    id: genre.genreId,
+                    name: genre.Genre.name,
                 });
             }
             return result;

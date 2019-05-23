@@ -17,6 +17,7 @@ module.exports = (sequelize, DataTypes) => {
   Movie.associate = function(models) {
     Movie.hasMany(models.MovieActor, { foreignKey: 'movieId' });
     Movie.hasMany(models.MovieGenre, { foreignKey: 'movieId' });
+    Movie.belongsTo(models.Universe, { foreignKey: 'universeId' });
   };
   return Movie;
 };

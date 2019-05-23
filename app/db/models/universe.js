@@ -4,7 +4,7 @@ module.exports = (sequelize, DataTypes) => {
     name: DataTypes.STRING
   }, {});
   Universe.associate = function(models) {
-    // associations can be defined here
+    Universe.hasOne(models.Movie, { foreignKey: 'universeId' });
   };
   return Universe;
 };
