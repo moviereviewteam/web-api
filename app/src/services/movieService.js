@@ -3,6 +3,7 @@ import { ValidateError } from '../errors';
 import { getAllActorsByMovieId } from './actorService';
 import { getAllGenresByMovieId } from './genreService';
 import { getAllArticlesByMovieId } from './articleService';
+import { getAllReviewsByMovieId } from './reviewService';
 
 export async function getMovieById(body) {
     try {
@@ -38,6 +39,11 @@ export async function getMovieById(body) {
                     movieId: id
                 }
             });
+            const reviews = await getAllReviewsByMovieId({
+                query: {
+                    movieId: id
+                }
+            });
             const result = {
                 id: movie.id,
                 image: movie.image,
@@ -50,10 +56,11 @@ export async function getMovieById(body) {
                 ageLimit: movie.ageLimit,
                 director: movie.director,
                 producer: movie.producer,
-                universe: movie.Universe.name,
+                universe: movie.universeId ? movie.Universe.name : null,
                 isVietnameseMovie: movie.isVietnameseMovie,
                 actors,
                 genres,
+                reviews,
                 articles
             }
             return result;
