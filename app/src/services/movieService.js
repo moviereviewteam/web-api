@@ -50,6 +50,7 @@ export async function getMovieById(body) {
                 trailer: movie.trailer,
                 nameVi: movie.nameVi,
                 nameEn: movie.nameEn,
+                score: reviews.averageScore,
                 overView: movie.overView,
                 premiereDate: movie.premiereDate,
                 duration: movie.duration,
@@ -57,10 +58,9 @@ export async function getMovieById(body) {
                 director: movie.director,
                 producer: movie.producer,
                 universe: movie.universeId ? movie.Universe.name : null,
-                isVietnameseMovie: movie.isVietnameseMovie,
                 actors,
                 genres,
-                reviews,
+                reviews: reviews.reviewList,
                 articles
             }
             return result;

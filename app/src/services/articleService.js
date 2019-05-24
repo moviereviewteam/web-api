@@ -1,5 +1,6 @@
 import models from '../../db/models';
 import { ValidateError } from '../errors';
+import { getAllCommentsByArticleId } from './commentService';
 
 export async function getArticleById(body) {
     try {
@@ -20,6 +21,11 @@ export async function getArticleById(body) {
                     id
                 }
             });
+            const comments = await getAllCommentsByArticleId({
+                query: {
+                    reviewArticleId: id
+                }
+            });
             const result = {
                 id: article.id,
                 title: article.title,
@@ -28,7 +34,8 @@ export async function getArticleById(body) {
                 dislike: article.dislike,
                 user: article.User.name,
                 createdAt: article.createdAt,
-                updatedAt: article.updatedAt
+                updatedAt: article.updatedAt,
+                comments
             }
             return result;
         }

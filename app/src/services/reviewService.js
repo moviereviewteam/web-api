@@ -20,9 +20,11 @@ export async function getAllReviewsByMovieId(body) {
                     movieId
                 }
             });
-            const result = [];
+            const reviewList = [];
+            let average = 0;
+            let n = 0;
             for (const review of reviews) {
-                result.push({
+                reviewList.push({
                     id: review.id,
                     score: review.score,
                     content: review.content,
@@ -30,6 +32,12 @@ export async function getAllReviewsByMovieId(body) {
                     dislike: review.dislike,
                     user: review.User.name 
                 });
+                average += review.score;
+                n += 1;
+            }
+            const result = {
+                averageScore: average/n,
+                reviewList
             }
             return result;
         }
