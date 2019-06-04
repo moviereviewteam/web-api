@@ -164,3 +164,39 @@ export async function getAllMoviesByUniverseId(body) {
         throw error;
     }
 }
+
+export async function getFavoriteListByUserId(body) {
+    try {
+        const { userId } = body.query;
+        if (!userId) {
+            throw new ValidateError({
+                message: "Param \'userId\' is required."
+            });
+        }
+        else {
+            const movieList = await models.FavoriteList.findAll({
+                include: [
+                    {
+                        model: models.Movie
+                    }
+                ],
+                where: {
+                    userId
+                }
+            });
+            const result = [];
+            for (const movie of movieList) {
+                result.push({
+                    id: movie.movieId,
+                    image: movie.Movie.image,
+                    name: movie.Movie.nameVi,
+                    premiereDate: movie.Movie.premiereDate
+                });
+            }
+            return result;
+        }
+    }
+    catch (error) {
+        throw error;
+    }
+}
