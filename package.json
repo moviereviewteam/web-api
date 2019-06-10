@@ -5,6 +5,7 @@
     "dev": "nodemon -r esm ./app/server.js --exec \"node --require dotenv/config\""
   },
   "dependencies": {
+    "body-parser": "^1.19.0",
     "dotenv": "^8.0.0",
     "esm": "^3.2.25",
     "express": "^4.16.4",

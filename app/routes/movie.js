@@ -8,5 +8,7 @@ router.get('/get-all-by-actorid', MovieController('getAllMoviesByActorId'));
 router.get('/get-all-by-genreid', MovieController('getAllMoviesByGenreId'));
 router.get('/get-all-by-universeid', MovieController('getAllMoviesByUniverseId'));
 router.get('/get-favorite-list', MovieController('getFavoriteListByUserId'));
+router.post('/add-to-favorite-list', MovieController('addToFavoriteList'));
+router.delete('/remove-from-favorite-list', MovieController('removeFromFavoriteList'));
 
 export default router;

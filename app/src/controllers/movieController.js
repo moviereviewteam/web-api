@@ -4,7 +4,9 @@ import {
   getAllMoviesByActorId,
   getAllMoviesByGenreId,
   getAllMoviesByUniverseId,
-  getFavoriteListByUserId
+  getFavoriteListByUserId,
+  addToFavoriteList,
+  removeFromFavoriteList
 } from '../services/movieService';
 
 function modelHandler(modelFunc) {
@@ -27,5 +29,7 @@ return {
     getAllMoviesByGenreId: express.Router().use(modelHandler(getAllMoviesByGenreId)),
     getAllMoviesByUniverseId: express.Router().use(modelHandler(getAllMoviesByUniverseId)),
     getFavoriteListByUserId: express.Router().use(modelHandler(getFavoriteListByUserId)),
+    addToFavoriteList: express.Router().use(modelHandler(addToFavoriteList)),
+    removeFromFavoriteList: express.Router().use(modelHandler(removeFromFavoriteList)),
 }[name];
 }

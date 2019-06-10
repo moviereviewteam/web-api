@@ -5,6 +5,8 @@ import { getAllGenresByMovieId } from './genreService';
 import { getAllArticlesByMovieId } from './articleService';
 import { getAllReviewsByMovieId } from './reviewService';
 
+const moment = require('moment');
+
 export async function getMovieById(body) {
     try {
         const { id } = body.query;
@@ -193,6 +195,62 @@ export async function getFavoriteListByUserId(body) {
                     premiereDate: movie.Movie.premiereDate
                 });
             }
+            return result;
+        }
+    }
+    catch (error) {
+        throw error;
+    }
+}
+
+export async function addToFavoriteList(body) {
+    try {
+        const { userId, movieId } = body.params;
+
+        if (!userId || !movieId) {
+            throw new ValidateError({
+                message: "Please check the required fields"
+            });
+        }
+        else {
+            const item = {
+                userId,
+                movieId,
+                createdAt: moment().format('YYYY-MM-DD hh:mm:ss'),
+                updatedAt: moment().format('YYYY-MM-DD hh:mm:ss'),
+            }
+
+            const result = await models.FavoriteList.create(item);
+            return result;
+        }
+    }
+    catch (error) {
+        throw error;
+    }
+}
+
+export async function removeFromFavoriteList(body) {
+    try {
+        const { userId, movieId } = body.params;
+
+        if (!userId || !movieId) {
+            throw new ValidateError({
+                message: "Please check the required fields"
+            });
+        }
+        else {
+            const item = await models.FavoriteList.findOne({
+                where: {
+                    userId,
+                    movieId
+                }
+            })
+
+            const result = await models.FavoriteList.destroy({
+                where: {
+                    id: item.id
+                }
+            });
             return result;
         }
     }
