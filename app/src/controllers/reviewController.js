@@ -1,6 +1,7 @@
 import express from 'express';
 import { 
     getAllReviewsByMovieId,
+    addReview
 } from '../services/reviewService';
 
 function modelHandler(modelFunc) {
@@ -19,5 +20,6 @@ function modelHandler(modelFunc) {
 export default function (name) {
 return {
     getAllReviewsByMovieId: express.Router().use(modelHandler(getAllReviewsByMovieId)),
+    addReview: express.Router().use(modelHandler(addReview)),
 }[name];
 }

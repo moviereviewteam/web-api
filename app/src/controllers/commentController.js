@@ -2,6 +2,9 @@ import express from 'express';
 import { 
   getAllCommentsByArticleId,
   getAllLv2CommentsByParentId,
+  addComment,
+  updateComment,
+  removeComment
 } from '../services/commentService';
 
 function modelHandler(modelFunc) {
@@ -21,5 +24,8 @@ export default function (name) {
 return {
     getAllCommentsByArticleId: express.Router().use(modelHandler(getAllCommentsByArticleId)),
     getAllLv2CommentsByParentId: express.Router().use(modelHandler(getAllLv2CommentsByParentId)),
+    addComment: express.Router().use(modelHandler(addComment)),
+    updateComment: express.Router().use(modelHandler(updateComment)),
+    removeComment: express.Router().use(modelHandler(removeComment)),
 }[name];
 }
