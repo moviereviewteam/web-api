@@ -11,4 +11,7 @@ router.get('/get-favorite-list', MovieController('getFavoriteListByUserId'));
 router.post('/add-to-favorite-list', MovieController('addToFavoriteList'));
 router.delete('/remove-from-favorite-list', MovieController('removeFromFavoriteList'));
 
+// admin
+router.get('/admin/get-all', MovieController('getAll'));
+
 export default router;

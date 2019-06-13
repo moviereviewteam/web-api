@@ -7,6 +7,29 @@ import { getAllReviewsByMovieId } from './reviewService';
 
 const moment = require('moment');
 
+export async function getAll(body) {
+    try {
+        const result = [];
+        let index = 0;
+
+        const movieList = await models.Movie.findAll();
+
+        for (const item of movieList) {
+        result.push({
+            index: index += 1,
+            id: item.id,
+            nameVi: item.nameVi,
+            nameEn: item.nameEn
+        });
+        }
+
+        return result;
+    }
+    catch (error) {
+        throw error;
+    }
+}
+
 export async function getMovieById(body) {
     try {
         const { id } = body.query;

@@ -1,9 +1,7 @@
 import express from 'express';
 import { 
-  getArticleById, 
-  getAllArticlesByMovieId,
   getAll,
-} from '../services/articleService';
+} from '../services/universeService';
 
 function modelHandler(modelFunc) {
     return async (req, res, next) => {
@@ -20,8 +18,6 @@ function modelHandler(modelFunc) {
   
 export default function (name) {
 return {
-    getArticleById: express.Router().use(modelHandler(getArticleById)),
-    getAllArticlesByMovieId: express.Router().use(modelHandler(getAllArticlesByMovieId)),
     getAll: express.Router().use(modelHandler(getAll)),
 }[name];
 }

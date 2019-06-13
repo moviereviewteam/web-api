@@ -6,7 +6,8 @@ import {
   getAllMoviesByUniverseId,
   getFavoriteListByUserId,
   addToFavoriteList,
-  removeFromFavoriteList
+  removeFromFavoriteList,
+  getAll,
 } from '../services/movieService';
 
 function modelHandler(modelFunc) {
@@ -31,5 +32,6 @@ return {
     getFavoriteListByUserId: express.Router().use(modelHandler(getFavoriteListByUserId)),
     addToFavoriteList: express.Router().use(modelHandler(addToFavoriteList)),
     removeFromFavoriteList: express.Router().use(modelHandler(removeFromFavoriteList)),
+    getAll: express.Router().use(modelHandler(getAll)),
 }[name];
 }

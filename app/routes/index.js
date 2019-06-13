@@ -7,6 +7,7 @@ import articleRouter from './article';
 import reviewRouter from './review';
 import commentRouter from './comment';
 import userRouter from './user';
+import universeRouter from './universe';
 
 const router = Router();
 
@@ -17,5 +18,6 @@ router.use('/api/v1/article', articleRouter);
 router.use('/api/v1/review', reviewRouter);
 router.use('/api/v1/comment', commentRouter);
 router.use('/api/v1/user', userRouter);
+router.use('/api/v1/universe', universeRouter);
 
 export default router;

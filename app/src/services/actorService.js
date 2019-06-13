@@ -2,6 +2,32 @@ import models from '../../db/models';
 import { ValidateError } from '../errors';
 import { getAllMoviesByActorId } from './movieService';
 
+var moment = require('moment');
+
+export async function getAll(body) {
+    try {
+        const result = [];
+        let index = 0;
+
+        const actorList = await models.Actor.findAll();
+
+        for (const item of actorList) {
+        result.push({
+            index: index += 1,
+            id: item.id,
+            name: item.name,
+            dateOfBirth: moment(item.dateOfBirth).format("DD/MM/YYYY"),
+            placeOfBirth: item.placeOfBirth
+        });
+        }
+
+        return result;
+    }
+    catch (error) {
+        throw error;
+    }
+}
+
 export async function getActorById(body) {
     try {
         const { id } = body.query;

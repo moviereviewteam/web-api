@@ -2,6 +2,7 @@ import express from 'express';
 import { 
   getActorById, 
   getAllActorsByMovieId,
+  getAll,
 } from '../services/actorService';
 
 function modelHandler(modelFunc) {
@@ -21,5 +22,6 @@ export default function (name) {
 return {
     getActorById: express.Router().use(modelHandler(getActorById)),
     getAllActorsByMovieId: express.Router().use(modelHandler(getAllActorsByMovieId)),
+    getAll: express.Router().use(modelHandler(getAll)),
 }[name];
 }

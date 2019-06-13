@@ -2,6 +2,35 @@ import models from '../../db/models';
 import { ValidateError } from '../errors';
 import { getAllCommentsByArticleId } from './commentService';
 
+export async function getAll(body) {
+    try {
+        const result = [];
+        let index = 0;
+
+        const articleList = await models.ReviewArticle.findAll({
+            include: [
+                {
+                    model: models.Movie
+                }
+            ]
+        });
+
+        for (const item of articleList) {
+        result.push({
+            index: index += 1,
+            id: item.id,
+            title: item.title,
+            movie: item.Movie.nameVi
+        });
+        }
+
+        return result;
+    }
+    catch (error) {
+        throw error;
+    }
+}
+
 export async function getArticleById(body) {
     try {
         const { id } = body.query;
