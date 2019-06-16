@@ -26,6 +26,9 @@ module.exports = {
       userId: {
         type: Sequelize.INTEGER
       },
+      isReviewArticle: {
+        type: Sequelize.BOOLEAN
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE

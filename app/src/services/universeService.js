@@ -12,7 +12,8 @@ export async function getAll(body) {
         result.push({
             index: index += 1,
             id: item.id,
-            name: item.name
+            name: item.name,
+            description: item.description
         });
         }
 

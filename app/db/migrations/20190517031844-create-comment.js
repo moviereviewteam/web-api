@@ -11,12 +11,6 @@ module.exports = {
       content: {
         type: Sequelize.TEXT
       },
-      like: {
-        type: Sequelize.INTEGER
-      },
-      dislike: {
-        type: Sequelize.INTEGER
-      },
       parentId: {
         type: Sequelize.INTEGER
       },

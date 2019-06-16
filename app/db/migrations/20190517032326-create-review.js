@@ -14,12 +14,6 @@ module.exports = {
       content: {
         type: Sequelize.TEXT
       },
-      like: {
-        type: Sequelize.INTEGER
-      },
-      dislike: {
-        type: Sequelize.INTEGER
-      },
       movieId: {
         type: Sequelize.INTEGER
       },

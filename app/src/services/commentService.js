@@ -31,8 +31,6 @@ export async function getAllLv2CommentsByParentId(body) {
                 result.push({
                     id: comment.id,
                     content: comment.content,
-                    like: comment.like,
-                    dislike: comment.dislike,
                     user: comment.User.name,
                     createdAt: comment.createdAt,
                     updatedAt: comment.updatedAt
@@ -74,8 +72,6 @@ export async function getAllCommentsByArticleId(body) {
                 result.push({
                     id: comment.id,
                     content: comment.content,
-                    like: comment.like,
-                    dislike: comment.dislike,
                     user: comment.User.name,
                     createdAt: comment.createdAt,
                     updatedAt: comment.updatedAt,
@@ -109,8 +105,6 @@ export async function addComment(body) {
                 userId,
                 reviewArticleId,
                 content,
-                like: 0,
-                dislike: 0,
                 createdAt: moment().format('YYYY-MM-DD hh:mm:ss'),
                 updatedAt: moment().format('YYYY-MM-DD hh:mm:ss'),
             }

@@ -6,7 +6,8 @@ module.exports = (sequelize, DataTypes) => {
     like: DataTypes.INTEGER,
     dislike: DataTypes.INTEGER,
     movieId: DataTypes.INTEGER,
-    userId: DataTypes.INTEGER
+    userId: DataTypes.INTEGER,
+    isReviewArticle: DataTypes.BOOLEAN
   }, {});
   ReviewArticle.associate = function(models) {
     ReviewArticle.belongsTo(models.Movie, { foreignKey: 'movieId' });

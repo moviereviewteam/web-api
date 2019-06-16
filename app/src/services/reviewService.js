@@ -30,8 +30,6 @@ export async function getAllReviewsByMovieId(body) {
                     id: review.id,
                     score: review.score,
                     content: review.content,
-                    like: review.like,
-                    dislike: review.dislike,
                     user: review.User.name 
                 });
                 average += review.score;
@@ -64,8 +62,6 @@ export async function addReview(body) {
                 movieId,
                 score,
                 content,
-                like: 0,
-                dislike: 0,
                 createdAt: moment().format('YYYY-MM-DD hh:mm:ss'),
                 updatedAt: moment().format('YYYY-MM-DD hh:mm:ss'),
             }

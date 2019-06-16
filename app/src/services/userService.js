@@ -13,7 +13,7 @@ export async function getUserById(body) {
             const user = await models.User.findOne({
                 where: {
                     id,
-                    roleId: 2,
+                    isAdmin: false,
                 }
             });
             return user;

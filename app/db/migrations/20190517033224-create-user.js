@@ -11,6 +11,9 @@ module.exports = {
       email: {
         type: Sequelize.STRING
       },
+      password: {
+        type: Sequelize.STRING
+      },
       avatar: {
         type: Sequelize.STRING
       },
@@ -23,8 +26,8 @@ module.exports = {
       gender: {
         type: Sequelize.BOOLEAN
       },
-      roleId: {
-        type: Sequelize.INTEGER
+      isAdmin: {
+        type: Sequelize.BOOLEAN
       },
       createdAt: {
         allowNull: false,
